@@ -61,15 +61,18 @@ function App() {
 
         /* Layout */
         .nav {
-          position: sticky; top: 0; z-index: 50; background: transparent;
+          position: sticky; top: 0; z-index: 50; background: #5458ae;
           backdrop-filter: none;
           border-bottom: none;
+          border-radius: 0 0 16px 16px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         .nav-inner { width: 100%; margin: 0; display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; }
         .brand { font-weight: 800; letter-spacing: .3px; color: #ffffff; font-size: 22px; }
         .links { display: flex; gap: 22px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
         .links::-webkit-scrollbar { display: none; }
-        .link { cursor: pointer; color: rgba(255,255,255,.9); font-weight: 700; position: relative; padding: 6px 0; font-size: 18px; }
+        .link { cursor: pointer; color: rgba(255,255,255,.9); font-weight: 700; position: relative; padding: 6px 0; font-size: 18px; transition: all 0.3s ease; }
+        .link:hover { color: #ffffff; transform: translateY(-2px); }
         .link.active { color: #ffffff; }
         .link.active::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 3px; background: #ffffff; border-radius: 999px; }
 
@@ -117,12 +120,8 @@ function App() {
         }
 
         .name-highlight {
-          background: linear-gradient(45deg, #ffffff, var(--brand), #ffffff);
-          background-size: 200% 200%;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: gradientShift 3s ease-in-out infinite, fadeInUp 0.8s ease-out 0.6s forwards;
+          color: #ffffff;
+          animation: fadeInUp 0.8s ease-out 0.6s forwards;
           opacity: 0;
           transform: translateY(20px);
         }
@@ -221,8 +220,11 @@ function App() {
 
         /* Work */
         .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-        .work-card { background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px -28px rgba(0,0,0,.25); }
-        .work-card img { width: 100%; height: 180px; object-fit: cover; display: block; }
+        .work-card { background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px -28px rgba(0,0,0,.25); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .work-card:hover { transform: translateY(-5px); box-shadow: 0 25px 50px -30px rgba(0,0,0,.35); }
+        .work-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .work-card h4 { font-size: 18px; font-weight: 600; color: #333; margin: 0 0 8px 0; }
+        .work-card p { font-size: 14px; line-height: 1.5; color: #666; margin: 0; }
 
         /* Contact */
         .contact form { max-width: 560px; margin: 0 auto; display: grid; gap: 14px; }
@@ -416,22 +418,108 @@ function App() {
         {/* Work */}
         <section id="work" ref={(el) => { refs.current['work'] = el }}>
           <h2>Work</h2>
-          <div className="work-grid">
-            {[
-              'photo-1454165804606-c3d57bc86b40',
-              'photo-1515378791036-0648a3ef77b2',
-              'photo-1517433456452-f9633a875f6f',
-              'photo-1521737604893-d14cc237f11d',
-              'photo-1504384308090-c894fdcc538d',
-              'photo-1481277542470-605612bd2d61',
-            ].map((id) => (
-              <div key={id} className="work-card">
-                <img
-                  src={`https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`}
-                  alt="Work"
-                />
-              </div>
-            ))}
+          
+          {/* Web System Section */}
+          <div style={{ marginBottom: '60px' }}>
+            <h3 style={{ fontSize: '28px', marginBottom: '20px', color: '#ffffff' }}>Web System</h3>
+            <p style={{ fontSize: '16px', color: '#B2D8CE', marginBottom: '30px', lineHeight: '1.6' }}>
+              I specialize in building modern, responsive web applications and systems using cutting-edge technologies. 
+              From e-commerce platforms to business management systems, I create scalable solutions that deliver exceptional user experiences 
+              and drive business growth through clean code architecture and intuitive interfaces.
+            </p>
+            <div className="work-grid">
+              {[
+                'photo-1460925895917-afdab827c52f',
+                'photo-1551650975-87deedd944c3',
+                'photo-1551434678-e076c223a692'
+              ].map((id, index) => (
+                <div key={id} className="work-card">
+                  <img
+                    src={`https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`}
+                    alt={`Web System Project ${index + 1}`}
+                  />
+                  <div style={{ padding: '20px' }}>
+                    <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
+                      {index === 0 ? 'E-commerce Platform' : index === 1 ? 'Business Dashboard' : 'Web Application'}
+                    </h4>
+                    <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                      {index === 0 ? 'Full-stack e-commerce solution with React & Node.js' : 
+                       index === 1 ? 'Real-time business analytics dashboard' : 
+                       'Modern web application with responsive design'}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Funnel Designs Section */}
+          <div style={{ marginBottom: '60px' }}>
+            <h3 style={{ fontSize: '28px', marginBottom: '20px', color: '#ffffff' }}>Funnel Designs</h3>
+            <p style={{ fontSize: '16px', color: '#B2D8CE', marginBottom: '30px', lineHeight: '1.6' }}>
+              Strategic funnel designs that convert visitors into customers. I create high-converting sales funnels, 
+              landing pages, and marketing sequences that guide users through the perfect customer journey. 
+              Each funnel is optimized for maximum conversion rates and ROI, using proven psychological principles 
+              and A/B testing methodologies.
+            </p>
+            <div className="work-grid">
+              {[
+                'photo-1559136555-9303baea8ebd',
+                'photo-1559136555-9303baea8ebd',
+                'photo-1559136555-9303baea8ebd'
+              ].map((id, index) => (
+                <div key={`funnel-${id}-${index}`} className="work-card">
+                  <img
+                    src={`https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`}
+                    alt={`Funnel Design ${index + 1}`}
+                  />
+                  <div style={{ padding: '20px' }}>
+                    <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
+                      {index === 0 ? 'Sales Funnel' : index === 1 ? 'Lead Generation' : 'Product Launch'}
+                    </h4>
+                    <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                      {index === 0 ? 'High-converting sales funnel with optimized flow' : 
+                       index === 1 ? 'Lead magnet funnel with email sequence' : 
+                       'Product launch funnel with scarcity elements'}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Graphics Designs Section */}
+          <div style={{ marginBottom: '60px' }}>
+            <h3 style={{ fontSize: '28px', marginBottom: '20px', color: '#ffffff' }}>Graphics Designs</h3>
+            <p style={{ fontSize: '16px', color: '#B2D8CE', marginBottom: '30px', lineHeight: '1.6' }}>
+              Creative graphic design solutions that bring brands to life. From logos and brand identity to marketing materials 
+              and social media graphics, I create visually stunning designs that communicate your message effectively 
+              and leave a lasting impression on your audience.
+            </p>
+            <div className="work-grid">
+              {[
+                'photo-1558655146-d09347e92766',
+                'photo-1558655146-d09347e92766',
+                'photo-1558655146-d09347e92766'
+              ].map((id, index) => (
+                <div key={`graphics-${id}-${index}`} className="work-card">
+                  <img
+                    src={`https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`}
+                    alt={`Graphics Design ${index + 1}`}
+                  />
+                  <div style={{ padding: '20px' }}>
+                    <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
+                      {index === 0 ? 'Brand Identity' : index === 1 ? 'Marketing Materials' : 'Social Media'}
+                    </h4>
+                    <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                      {index === 0 ? 'Complete brand identity and logo design' : 
+                       index === 1 ? 'Brochures, flyers, and business cards' : 
+                       'Social media graphics and templates'}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
