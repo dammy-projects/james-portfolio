@@ -1,13 +1,22 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, Fragment } from 'react'
 import heroPhoto from './assets/sssssaaaa.png'
 import myImage from './assets/my-image.jpg'
+import shot1 from './assets/Screenshot 2025-08-25 012049.png'
+import shot2 from './assets/Screenshot 2025-08-25 012105.png'
 import './App.css'
 
 function App() {
-  const sections = ['home', 'about', 'skills', 'work', 'contact'] as const
+  const sections = ['home', 'about', 'skills', 'process', 'work', 'contact'] as const
   const [active, setActive] = useState<(typeof sections)[number]>('home')
   const refs = useRef<Record<string, HTMLElement | null>>({})
   const [aboutVisible, setAboutVisible] = useState(false)
+  const [skillsVisible, setSkillsVisible] = useState(false)
+  const [processVisible, setProcessVisible] = useState(false)
+  const galleryImages = [shot1, shot2]
+  const [isGalleryOpen, setIsGalleryOpen] = useState(false)
+  const [galleryIndex, setGalleryIndex] = useState(0)
+  const openGallery = (startIndex: number = 0) => { setGalleryIndex(startIndex); setIsGalleryOpen(true) }
+  const nextImage = () => setGalleryIndex((i) => (i + 1) % galleryImages.length)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -20,6 +29,12 @@ function App() {
             // Trigger about section animation
             if (id === 'about') {
               setAboutVisible(true)
+            }
+            if (id === 'skills') {
+              setSkillsVisible(true)
+            }
+            if (id === 'process') {
+              setProcessVisible(true)
             }
           }
         })
@@ -64,7 +79,7 @@ function App() {
           position: sticky; top: 0; z-index: 50; background: #5458ae;
           backdrop-filter: none;
           border-bottom: none;
-          border-radius: 0 0 16px 16px;
+          border-radius: 16px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
         .nav-inner { width: 100%; margin: 0; display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; }
@@ -162,7 +177,7 @@ function App() {
         @keyframes morph {
           0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
           50%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
-          100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+          100% { border-radius: 60% 40% 30% 70% 40%; }
         }
 
         /* About */
@@ -213,6 +228,8 @@ function App() {
 
         /* Skills */
         .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+        .skills-animate { opacity: 0; transform: translateY(20px); transition: all .8s ease-out; }
+        .skills-animate.animate { opacity: 1; transform: translateY(0); }
         .bar { background: #eef2ff; height: 12px; border-radius: 999px; overflow: hidden; }
         .bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--brand), var(--brand2)); border-radius: 999px; box-shadow: inset 0 0 0 2px rgba(255,255,255,.4); }
         .skill { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 14px; border: 1px solid #e5e7eb; background: #fff; border-radius: 14px; box-shadow: 0 16px 30px -24px rgba(0,0,0,.25); }
@@ -222,9 +239,11 @@ function App() {
         .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
         .work-card { background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px -28px rgba(0,0,0,.25); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .work-card:hover { transform: translateY(-5px); box-shadow: 0 25px 50px -30px rgba(0,0,0,.35); }
-        .work-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .work-card img { width: 100%; height: 200px; object-fit: cover; display: block; transition: transform .35s ease; }
+        .work-card:hover img { transform: scale(1.06); }
         .work-card h4 { font-size: 18px; font-weight: 600; color: #333; margin: 0 0 8px 0; }
         .work-card p { font-size: 14px; line-height: 1.5; color: #666; margin: 0; }
+        .view-btn { margin-top: 12px; }
 
         /* Contact */
         .contact form { max-width: 560px; margin: 0 auto; display: grid; gap: 14px; }
@@ -304,6 +323,20 @@ function App() {
             border-bottom: none;
           }
         }
+
+        /* Process */
+        .process-flow { display: flex; align-items: flex-start; justify-content: center; gap: 56px; flex-wrap: wrap; }
+        .process-step { text-align: center; max-width: 260px; }
+        .process-badge { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(145deg, var(--brand3), var(--brand2)); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 24px -12px var(--ring); margin: 0 auto; transition: transform .3s ease, box-shadow .3s ease; }
+        .process-title { margin: 12px 0 4px; color: #ffffff; font-weight: 700; }
+        .process-desc { color: #ffffff; font-size: 14px; margin: 0 auto; }
+        .process-divider { width: 36px; height: 2px; background: rgba(255,255,255,.35); align-self: center; margin-top: 28px; }
+        .process-animate { opacity: 0; transform: translateY(20px); transition: all .8s ease-out; }
+        .process-animate.animate { opacity: 1; transform: translateY(0); }
+        .process-step:hover .process-badge { transform: scale(1.08); box-shadow: 0 18px 36px -12px var(--ring); }
+        .process-step:hover .process-title { color: #ffffff; }
+        .process-step:hover .process-desc { color: #ffffff; }
+        @media (max-width: 980px) { .process-divider { display: none; } }
       `}</style>
 
       {/* Navbar */}
@@ -317,11 +350,11 @@ function App() {
                 className={`link ${active === id ? 'active' : ''}`}
                 onClick={() => scrollTo(id)}
               >
-                {id.charAt(0).toUpperCase() + id.slice(1)}
+                {id === 'work' ? 'Projects' : id.charAt(0).toUpperCase() + id.slice(1)}
               </span>
             ))}
           </div>
-          <button className="mobile-menu-toggle" onClick={() => document.querySelector('.links')?.classList.toggle('show')}>
+          <button className="mobile-menu-toggle" aria-label="Toggle navigation" title="Toggle navigation" onClick={() => document.querySelector('.links')?.classList.toggle('show')}>
             <span></span>
             <span></span>
             <span></span>
@@ -337,17 +370,17 @@ function App() {
               <p className="lead intro-text" style={{ color: '#ffffff' }}>Hi,</p>
               <h1 className="title">I'm <span className="name-highlight" style={{ color: '#ffffff' }}>James Daumar</span><br/><span className="role-text">Frontend Developer & Graphic Designer</span></h1>
               <div className="socials">
-                <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" aria-label="LinkedIn" className="social-link" target="_blank" rel="noreferrer">
+                <a href="https://www.linkedin.com/public-profile/settings?trk=d_flagship3_profile_self_view_public_profile" aria-label="LinkedIn" className="social-link" target="_blank" rel="noopener noreferrer">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M19 0H5C3.343 0 2 1.343 2 3v18c0 1.657 1.343 3 3 3h14c1.657 0 3-1.343 3-3V3c0-1.657-1.343-3-3-3zM8.09 20.452H5.337V9h2.753v11.452zM6.713 7.651a1.593 1.593 0 1 1 0-3.186 1.593 1.593 0 0 1 0 3.186zM20.452 20.452h-2.751v-5.573c0-1.329-.027-3.039-1.852-3.039-1.853 0-2.136 1.447-2.136 2.944v5.668H11.96V9h2.64v1.561h.037c.367-.695 1.262-1.429 2.597-1.429 2.778 0 3.292 1.829 3.292 4.205v7.115z"/>
                   </svg>
                 </a>
-                <a href="https://www.instagram.com/james_dam_art/#" aria-label="Instagram" className="social-link" target="_blank" rel="noreferrer">
+                <a href="https://www.instagram.com/james_dam_art/#" aria-label="Instagram" className="social-link" target="_blank" rel="noopener noreferrer">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm11 1.75a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/>
                   </svg>
                 </a>
-                <a href="https://github.com/dammy-projects" aria-label="GitHub" className="social-link" target="_blank" rel="noreferrer">
+                <a href="https://github.com/dammy-projects" aria-label="GitHub" className="social-link" target="_blank" rel="noopener noreferrer">
                   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387.6.113.793-.262.793-.582 0-.287-.01-1.045-.016-2.052-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.758-1.333-1.758-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.304.76-1.604-2.665-.305-5.466-1.333-5.466-5.93 0-1.31.47-2.382 1.236-3.22-.124-.304-.535-1.526.117-3.176 0 0 1.008-.323 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.02.004 2.047.138 3.006.404 2.29-1.553 3.297-1.23 3.297-1.23.653 1.65.242 2.872.119 3.176.77.838 1.235 1.91 1.235 3.22 0 4.61-2.804 5.624-5.476 5.922.43.37.813 1.102.813 2.222 0 1.604-.015 2.896-.015 3.29 0 .322.19.699.8.58C20.565 21.796 24 17.297 24 12 24 5.37 18.627 0 12 0z"/>
                   </svg>
@@ -379,7 +412,7 @@ function App() {
         <section id="skills" ref={(el) => { refs.current['skills'] = el }}>
           <h2>Skills</h2>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '16px', maxWidth: '800px' }}>
+            <div className={`skills-animate ${skillsVisible ? 'animate' : ''}`} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '16px', maxWidth: '800px' }}>
               {[
                 { name: 'React', icon: <svg width="20" height="20" viewBox="0 0 122.88 109.43" xmlns="http://www.w3.org/2000/svg"><g><path d="M122.88,54.73c0-8.14-10.19-15.85-25.82-20.64c3.61-15.93,2-28.6-5.06-32.66c-1.63-0.95-3.53-1.4-5.61-1.4 v5.59c1.15,0,2.08,0.23,2.86,0.65c3.41,1.95,4.88,9.39,3.73,18.96c-0.28,2.35-0.73,4.83-1.28,7.36c-4.91-1.2-10.27-2.13-15.9-2.73 c-3.38-4.63-6.89-8.84-10.42-12.52C73.54,9.74,81.2,5.59,86.41,5.59V0l0,0c-6.89,0-15.9,4.91-25.02,13.43 C52.27,4.96,43.26,0.1,36.37,0.1v5.59c5.18,0,12.87,4.13,21.04,11.67c-3.51,3.68-7.01,7.86-10.34,12.5 c-5.66,0.6-11.02,1.53-15.93,2.75c-0.58-2.5-1-4.93-1.3-7.26c-1.18-9.57,0.28-17.01,3.66-18.99c0.75-0.45,1.73-0.65,2.88-0.65V0.13 l0,0c-2.1,0-4.01,0.45-5.66,1.4c-7.04,4.06-8.62,16.71-4.98,32.59C10.14,38.92,0,46.61,0,54.73c0,8.14,10.19,15.85,25.82,20.64 c-3.61,15.93-2,28.6,5.06,32.66c1.63,0.95,3.53,1.4,5.64,1.4c6.89,0,15.9-4.91,25.02-13.43c9.12,8.47,18.13,13.33,25.02,13.33 c2.1,0,4.01-0.45,5.66-1.4c7.04-4.06,8.62-16.71,4.98-32.59C112.74,70.56,122.88,62.84,122.88,54.73L122.88,54.73z M72.86,54.73 c0-6.32-5.12-11.45-11.45-11.45c-6.32,0-11.45,5.12-11.45,11.45s5.12,11.45,11.45,11.45C67.74,66.17,72.86,61.05,72.86,54.73 L72.86,54.73z M36.34,0.1L36.34,0.1L36.34,0.1L36.34,0.1z M90.27,38.02c-0.93,3.23-2.08,6.56-3.38,9.89c-1.03-2-2.1-4.01-3.28-6.01 c-1.15-2-2.38-3.96-3.61-5.86C83.56,36.57,86.99,37.22,90.27,38.02L90.27,38.02z M78.8,64.7c-1.95,3.38-3.96,6.59-6.04,9.57 c-3.73,0.33-7.51,0.5-11.32,0.5c-3.78,0-7.56-0.18-11.27-0.48c-2.08-2.98-4.11-6.16-6.06-9.52c-1.9-3.28-3.63-6.61-5.21-9.97 c1.55-3.36,3.31-6.71,5.18-9.99c1.95-3.38,3.96-6.59,6.04-9.57c3.73-0.33,7.51-0.5,11.32-0.5c3.78,0,7.56,0.18,11.27,0.48 c2.08,2.98,4.11,6.16,6.06,9.52c1.9,3.28,3.63,6.61,5.21,9.97C82.4,58.06,80.68,61.41,78.8,64.7L78.8,64.7z M86.89,61.44 c1.35,3.36,2.5,6.71,3.46,9.97c-3.28,0.8-6.74,1.48-10.32,2c1.23-1.93,2.45-3.91,3.61-5.94C84.78,65.47,85.86,63.44,86.89,61.44 L86.89,61.44z M61.49,88.16c-2.33-2.4-4.66-5.08-6.96-8.01c2.25,0.1,4.56,0.18,6.89,0.18c2.35,0,4.68-0.05,6.96-0.18 C66.12,83.08,63.79,85.76,61.49,88.16L61.49,88.16z M42.86,73.41c-3.56-0.53-6.99-1.18-10.27-1.98c0.93-3.23,2.08-6.56,3.38-9.89 c1.03,2,2.1,4.01,3.28,6.01C40.43,69.56,41.63,71.51,42.86,73.41L42.86,73.41z M61.36,21.29c2.33,2.4,4.66,5.08,6.96,8.01 c-2.25-0.1-4.56-0.18-6.89-0.18c-2.35,0-4.68,0.05-6.96,0.18C56.73,26.37,59.06,23.69,61.36,21.29L61.36,21.29z M42.83,36.04 c-1.23,1.93-2.45,3.91-3.61,5.94c-1.15,2-2.23,4.01-3.26,6.01c-1.35-3.36-2.5-6.71-3.46-9.97C35.79,37.24,39.25,36.57,42.83,36.04 L42.83,36.04z M20.16,67.4c-8.87-3.78-14.6-8.74-14.6-12.67c0-3.93,5.74-8.92,14.6-12.67c2.15-0.93,4.51-1.75,6.94-2.53 c1.43,4.91,3.31,10.02,5.64,15.25c-2.3,5.21-4.16,10.29-5.56,15.18C24.7,69.18,22.34,68.33,20.16,67.4L20.16,67.4z M33.64,103.19 c-3.41-1.95-4.88-9.39-3.73-18.96c0.28-2.35,0.73-4.83,1.28-7.36c4.91,1.2,10.27,2.13,15.9,2.73c3.38,4.63,6.89,8.84,10.42,12.52 c-8.17,7.59-15.83,11.75-21.04,11.75C35.34,103.84,34.39,103.62,33.64,103.19L33.64,103.19z M93.05,84.11 c1.18,9.57-0.28,17.01-3.66,18.99c-0.75,0.45-1.73,0.65-2.88,0.65c-5.18,0-12.87-4.13-21.04-11.67c3.51-3.68,7.01-7.86,10.34-12.5 c5.66-0.6,11.02-1.53,15.93-2.76C92.32,79.35,92.77,81.78,93.05,84.11L93.05,84.11z M102.69,67.4c-2.15,0.93-4.51,1.75-6.94,2.53 c-1.43-4.91-3.31-10.02-5.64-15.25c2.3-5.21,4.16-10.29,5.56-15.18c2.48,0.78,4.83,1.63,7.04,2.55c8.87,3.78,14.6,8.74,14.6,12.67 C117.29,58.66,111.56,63.64,102.69,67.4L102.69,67.4z" fill="#00D8FF"/></g></svg> },
                 { name: 'HTML', icon: <svg width="20" height="20" viewBox="0 0 108.35 122.88" xmlns="http://www.w3.org/2000/svg"><g><polygon points="108.35,0 98.48,110.58 54.11,122.88 9.86,110.6 0,0 108.35,0" fill="#E44D26"/><polygon points="54.17,113.48 90.03,103.54 98.46,9.04 54.17,9.04 54.17,113.48" fill="#F16529"/><path d="M34.99,36.17h19.19V22.61H20.16l0.32,3.64l3.33,37.38h30.35V50.06H36.23L34.99,36.17L34.99,36.17L34.99,36.17z M38.04,70.41H24.43l1.9,21.3l27.79,7.71l0.06-0.02V85.29l-0.06,0.02l-15.11-4.08L38.04,70.41L38.04,70.41L38.04,70.41z" fill="#EBEBEB"/><path d="M54.13,63.63h16.7l-1.57,17.59L54.13,85.3v14.11l27.81-7.71l0.2-2.29l3.19-35.71l0.33-3.64H54.13V63.63 L54.13,63.63z M54.13,36.14v0.03h32.76l0.27-3.05l0.62-6.88l0.32-3.64H54.13V36.14L54.13,36.14L54.13,63.63z" fill="#FFFFFF"/></g></svg> },
@@ -415,9 +448,35 @@ function App() {
            </div>
          </section>
 
+        {/* Process */}
+        <section id="process" ref={(el) => { refs.current['process'] = el }}>
+          <h2>Process</h2>
+          <div className={`process-animate ${processVisible ? 'animate' : ''}`}>
+            <div className="process-flow">
+              {[ 
+                { title: 'Discovery', desc: 'Understand goals, audience, and success criteria.' },
+                { title: 'Planning', desc: 'Define scope, sitemap, and timelines.' },
+                { title: 'Design', desc: 'Create wireframes and high-fidelity UI.' },
+                { title: 'Development', desc: 'Build responsive, performant features.' },
+                { title: 'Testing', desc: 'QA, accessibility, and cross‑browser checks.' },
+                { title: 'Launch & Iterate', desc: 'Deploy, monitor, and improve.' },
+              ].map((step, i, arr) => (
+                <Fragment key={i}>
+                  <div className="process-step">
+                    <div className="process-badge">{String(i + 1).padStart(2, '0')}</div>
+                    <div className="process-title">{step.title}</div>
+                    <div className="process-desc">{step.desc}</div>
+                  </div>
+                  {i < arr.length - 1 && <span className="process-divider" aria-hidden="true"></span>}
+                </Fragment>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Work */}
         <section id="work" ref={(el) => { refs.current['work'] = el }}>
-          <h2>Work</h2>
+          <h2>Projects</h2>
           
           {/* Web System Section */}
           <div style={{ marginBottom: '60px' }}>
@@ -428,6 +487,22 @@ function App() {
               and drive business growth through clean code architecture and intuitive interfaces.
             </p>
             <div className="work-grid">
+              {/* MAB Hospital Management System */}
+              <div className="work-card">
+                <img src={shot1} alt="MAB Hospital Management System Screenshot" />
+                <div style={{ padding: '20px' }}>
+                  <div style={{ color: '#888', fontSize: '12px', marginBottom: 6 }}>Healthcare</div>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>MAB Hospital Management System</h4>
+                  <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                    Comprehensive healthcare management platform with patient records, appointment scheduling, and medical inventory management.
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
+                    {['React', 'Node.js', 'PostgreSQL', 'TypeScript'].map((t) => (
+                      <span key={t} style={{ fontSize: 12, background: '#eef2ff', color: '#374151', padding: '6px 10px', borderRadius: 999, border: '1px solid #e5e7eb' }}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
               {[
                 'photo-1460925895917-afdab827c52f',
                 'photo-1551650975-87deedd944c3',
@@ -522,6 +597,19 @@ function App() {
             </div>
           </div>
         </section>
+
+        {/* Modal Gallery */}
+        {isGalleryOpen && (
+          <div className="modal" onClick={(e) => { if (e.target === e.currentTarget) setIsGalleryOpen(false) }}>
+            <div className="modal-content">
+              <img src={galleryImages[galleryIndex]} alt={`Screenshot ${galleryIndex + 1}`} />
+              <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 12 }}>
+                <button className="btn" onClick={() => setIsGalleryOpen(false)}>Close</button>
+                <button className="btn" onClick={nextImage}>Next</button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Contact */}
         <section id="contact" ref={(el) => { refs.current['contact'] = el }} className="contact">
