@@ -3,6 +3,10 @@ import heroPhoto from './assets/sssssaaaa.png'
 import myImage from './assets/my-image.jpg'
 import shot1 from './assets/Screenshot 2025-08-25 012049.png'
 import shot2 from './assets/Screenshot 2025-08-25 012105.png'
+import shot3 from './assets/Screenshot 2025-08-25 012151.png'
+import shot4 from './assets/Screenshot 2025-08-25 012207.png'
+import shot5 from './assets/Screenshot 2025-08-25 012250.png'
+import shot6 from './assets/Screenshot 2025-08-25 012328.png'
 import './App.css'
 
 function App() {
@@ -13,10 +17,20 @@ function App() {
   const [skillsVisible, setSkillsVisible] = useState(false)
   const [processVisible, setProcessVisible] = useState(false)
   const galleryImages = [shot1, shot2]
+  const ibacmiGalleryImages = [shot3, shot4]
+  const edificeGalleryImages = [shot5, shot6]
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
   const [galleryIndex, setGalleryIndex] = useState(0)
+  const [isIbacmiGalleryOpen, setIsIbacmiGalleryOpen] = useState(false)
+  const [ibacmiGalleryIndex, setIbacmiGalleryIndex] = useState(0)
+  const [isEdificeGalleryOpen, setIsEdificeGalleryOpen] = useState(false)
+  const [edificeGalleryIndex, setEdificeGalleryIndex] = useState(0)
   const openGallery = (startIndex: number = 0) => { setGalleryIndex(startIndex); setIsGalleryOpen(true) }
+  const openIbacmiGallery = (startIndex: number = 0) => { setIbacmiGalleryIndex(startIndex); setIsIbacmiGalleryOpen(true) }
+  const openEdificeGallery = (startIndex: number = 0) => { setEdificeGalleryIndex(startIndex); setIsEdificeGalleryOpen(true) }
   const nextImage = () => setGalleryIndex((i) => (i + 1) % galleryImages.length)
+  const nextIbacmiImage = () => setIbacmiGalleryIndex((i) => (i + 1) % ibacmiGalleryImages.length)
+  const nextEdificeImage = () => setEdificeGalleryIndex((i) => (i + 1) % edificeGalleryImages.length)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -145,6 +159,97 @@ function App() {
           opacity: 0;
           transform: translateY(20px);
           animation: fadeInUp 0.8s ease-out 1s forwards;
+        }
+
+        /* Work Section Styles */
+        .work-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 30px;
+          margin-top: 30px;
+        }
+
+        .work-card {
+          background: #ffffff;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
+        }
+
+        .work-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .work-card img {
+          width: 100%;
+          height: 250px;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .work-card:hover img {
+          transform: scale(1.05);
+        }
+
+        /* Modal Gallery */
+        .modal {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.9);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1000;
+          padding: 20px;
+        }
+
+        .modal-content {
+          max-width: 90%;
+          max-height: 90%;
+          position: relative;
+        }
+
+        .modal-content img {
+          width: 100%;
+          height: auto;
+          max-height: 80vh;
+          object-fit: contain;
+          border-radius: 8px;
+        }
+
+        .modal-content .btn {
+          background: #5458ae;
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          margin: 0 8px;
+        }
+
+        .modal-content .btn:hover {
+          background: #4a4f9e;
+          transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .work-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+          
+          .modal-content {
+            max-width: 95%;
+            padding: 10px;
+          }
         }
 
         @keyframes fadeInUp {
@@ -489,7 +594,40 @@ function App() {
             <div className="work-grid">
               {/* MAB Hospital Management System */}
               <div className="work-card">
-                <img src={shot1} alt="MAB Hospital Management System Screenshot" />
+                <div style={{ position: 'relative', padding: '20px' }}>
+                  <img src={shot1} alt="MAB Hospital Management System Screenshot" style={{ width: '100%', borderRadius: '8px' }} />
+                  <button 
+                    onClick={() => openGallery(0)}
+                    style={{
+                      position: 'absolute',
+                      top: '30px',
+                      right: '30px',
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#333"/>
+                    </svg>
+                  </button>
+                </div>
                 <div style={{ padding: '20px' }}>
                   <div style={{ color: '#888', fontSize: '12px', marginBottom: 6 }}>Healthcare</div>
                   <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>MAB Hospital Management System</h4>
@@ -503,28 +641,108 @@ function App() {
                   </div>
                 </div>
               </div>
-              {[
-                'photo-1460925895917-afdab827c52f',
-                'photo-1551650975-87deedd944c3',
-                'photo-1551434678-e076c223a692'
-              ].map((id, index) => (
-                <div key={id} className="work-card">
-                  <img
-                    src={`https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`}
-                    alt={`Web System Project ${index + 1}`}
-                  />
-                  <div style={{ padding: '20px' }}>
-                    <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
-                      {index === 0 ? 'E-commerce Platform' : index === 1 ? 'Business Dashboard' : 'Web Application'}
-                    </h4>
-                    <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-                      {index === 0 ? 'Full-stack e-commerce solution with React & Node.js' : 
-                       index === 1 ? 'Real-time business analytics dashboard' : 
-                       'Modern web application with responsive design'}
-                    </p>
+
+              {/* IBACMI Inventory Management System */}
+              <div className="work-card">
+                <div style={{ position: 'relative', padding: '20px' }}>
+                  <img src={shot3} alt="IBACMI Inventory Management System Screenshot" style={{ width: '100%', borderRadius: '8px' }} />
+                  <button 
+                    onClick={() => openIbacmiGallery(0)}
+                    style={{
+                      position: 'absolute',
+                      top: '30px',
+                      right: '30px',
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#333"/>
+                    </svg>
+                  </button>
+                </div>
+                <div style={{ padding: '20px' }}>
+                  <div style={{ color: '#888', fontSize: '12px', marginBottom: 6 }}>Business</div>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>IBACMI Inventory Management System</h4>
+                  <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                    Advanced inventory tracking and management solution with real-time analytics, automated reordering, and multi-location support.
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
+                    {['Next.js', 'Express', 'MongoDB', 'Chart.js'].map((t) => (
+                      <span key={t} style={{ fontSize: 12, background: '#eef2ff', color: '#374151', padding: '6px 10px', borderRadius: 999, border: '1px solid #e5e7eb' }}>{t}</span>
+                    ))}
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* The Edifice Online Flipbook */}
+              <div className="work-card">
+                <div style={{ position: 'relative', padding: '20px' }}>
+                  <img src={shot5} alt="The Edifice Online Flipbook Screenshot" style={{ width: '100%', borderRadius: '8px' }} />
+                  <button 
+                    onClick={() => openEdificeGallery(0)}
+                    style={{
+                      position: 'absolute',
+                      top: '30px',
+                      right: '30px',
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#333"/>
+                    </svg>
+                  </button>
+                </div>
+                <div style={{ padding: '20px' }}>
+                  <div style={{ color: '#888', fontSize: '12px', marginBottom: 6 }}>Media</div>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>The Edifice Online Flipbook</h4>
+                  <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                    Interactive digital flipbook platform with immersive reading experience, multimedia integration, and social sharing features.
+                  </p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
+                    {['React', 'Three.js', 'Firebase', 'CSS3'].map((t) => (
+                      <span key={t} style={{ fontSize: 12, background: '#eef2ff', color: '#374151', padding: '6px 10px', borderRadius: 999, border: '1px solid #e5e7eb' }}>{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+
             </div>
           </div>
 
@@ -598,18 +816,44 @@ function App() {
           </div>
         </section>
 
-        {/* Modal Gallery */}
-        {isGalleryOpen && (
-          <div className="modal" onClick={(e) => { if (e.target === e.currentTarget) setIsGalleryOpen(false) }}>
-            <div className="modal-content">
-              <img src={galleryImages[galleryIndex]} alt={`Screenshot ${galleryIndex + 1}`} />
-              <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 12 }}>
-                <button className="btn" onClick={() => setIsGalleryOpen(false)}>Close</button>
-                <button className="btn" onClick={nextImage}>Next</button>
-              </div>
-            </div>
-          </div>
-        )}
+                          {/* Modal Gallery */}
+         {isGalleryOpen && (
+           <div className="modal" onClick={(e) => { if (e.target === e.currentTarget) setIsGalleryOpen(false) }}>
+             <div className="modal-content">
+               <img src={galleryImages[galleryIndex]} alt={`Screenshot ${galleryIndex + 1}`} />
+               <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 12 }}>
+                 <button className="btn" onClick={() => setIsGalleryOpen(false)}>Close</button>
+                 <button className="btn" onClick={nextImage}>Next</button>
+               </div>
+             </div>
+           </div>
+         )}
+
+         {/* IBACMI Modal Gallery */}
+         {isIbacmiGalleryOpen && (
+           <div className="modal" onClick={(e) => { if (e.target === e.currentTarget) setIsIbacmiGalleryOpen(false) }}>
+             <div className="modal-content">
+               <img src={ibacmiGalleryImages[ibacmiGalleryIndex]} alt={`IBACMI Screenshot ${ibacmiGalleryIndex + 1}`} />
+               <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 12 }}>
+                 <button className="btn" onClick={() => setIsIbacmiGalleryOpen(false)}>Close</button>
+                 <button className="btn" onClick={nextIbacmiImage}>Next</button>
+               </div>
+             </div>
+           </div>
+         )}
+
+         {/* Edifice Modal Gallery */}
+         {isEdificeGalleryOpen && (
+           <div className="modal" onClick={(e) => { if (e.target === e.currentTarget) setIsEdificeGalleryOpen(false) }}>
+             <div className="modal-content">
+               <img src={edificeGalleryImages[edificeGalleryIndex]} alt={`Edifice Screenshot ${edificeGalleryIndex + 1}`} />
+               <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 12 }}>
+                 <button className="btn" onClick={() => setIsEdificeGalleryOpen(false)}>Close</button>
+                 <button className="btn" onClick={nextEdificeImage}>Next</button>
+               </div>
+             </div>
+           </div>
+         )}
 
         {/* Contact */}
         <section id="contact" ref={(el) => { refs.current['contact'] = el }} className="contact">
