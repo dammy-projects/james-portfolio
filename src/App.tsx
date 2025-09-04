@@ -1202,6 +1202,37 @@ function App() {
           </div>
         </section>
       </main>
+      
+      {/* Footer */}
+      <footer style={{
+        background: 'linear-gradient(135deg, #5458ae 0%, #4b2d7f 100%)',
+        padding: '40px 0 20px 0',
+        marginTop: '80px',
+        borderTop: '1px solid rgba(255, 255, 255, 0.1)'
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '0 20px'
+        }}>
+
+          
+          {/* Footer Bottom */}
+          <div style={{
+            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            paddingTop: '20px',
+            textAlign: 'center'
+          }}>
+            <p style={{
+              color: '#B2D8CE',
+              fontSize: '14px',
+              margin: 0
+            }}>
+              © 2024 James Daumar. All rights reserved. | Designed with ❤️ for digital success
+            </p>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
