@@ -7,6 +7,9 @@ import shot3 from './assets/Screenshot 2025-08-25 012151.png'
 import shot4 from './assets/Screenshot 2025-08-25 012207.png'
 import shot5 from './assets/Screenshot 2025-08-25 012250.png'
 import shot6 from './assets/Screenshot 2025-08-25 012328.png'
+import salesFunnelScreenshot from './assets/Screenshot 2025-09-04 132251.png'
+import leadGenerationScreenshot from './assets/Screenshot 2025-09-04 132311.png'
+import productLaunchScreenshot from './assets/Screenshot 2025-09-04 132322.png'
 import './App.css'
 
 function App() {
@@ -175,6 +178,21 @@ function App() {
           overflow: hidden;
           box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease;
+          opacity: 0;
+          transform: translateY(50px);
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .work-card:nth-child(1) {
+          animation-delay: 0.1s;
+        }
+
+        .work-card:nth-child(2) {
+          animation-delay: 0.3s;
+        }
+
+        .work-card:nth-child(3) {
+          animation-delay: 0.5s;
         }
 
         .work-card:hover {
@@ -191,6 +209,13 @@ function App() {
 
         .work-card:hover img {
           transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         /* Modal Gallery */
@@ -762,20 +787,154 @@ function App() {
                 'photo-1559136555-9303baea8ebd'
               ].map((id, index) => (
                 <div key={`funnel-${id}-${index}`} className="work-card">
-                  <img
-                    src={`https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`}
-                    alt={`Funnel Design ${index + 1}`}
-                  />
-                  <div style={{ padding: '20px' }}>
-                    <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
-                      {index === 0 ? 'Sales Funnel' : index === 1 ? 'Lead Generation' : 'Product Launch'}
-                    </h4>
-                    <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-                      {index === 0 ? 'High-converting sales funnel with optimized flow' : 
-                       index === 1 ? 'Lead magnet funnel with email sequence' : 
-                       'Product launch funnel with scarcity elements'}
-                    </p>
-                  </div>
+                  {index === 0 ? (
+                    <>
+                      <img
+                        src={salesFunnelScreenshot}
+                        alt="Sales Funnel Screenshot"
+                      />
+                      <div style={{ padding: '20px' }}>
+                        <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
+                          Sales Funnel
+                        </h4>
+                        <p style={{ margin: '0 0 15px 0', color: '#666', fontSize: '14px' }}>
+                          High-converting sales funnel with optimized flow
+                        </p>
+                        <a 
+                          href="https://sales-funnel-jd.netlify.app/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            background: '#5458ae',
+                            color: '#ffffff',
+                            padding: '10px 16px',
+                            borderRadius: '8px',
+                            textDecoration: 'none',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            transition: 'all 0.3s ease',
+                            boxShadow: '0 4px 12px rgba(84, 88, 174, 0.3)'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#4a4f9e';
+                            e.currentTarget.style.transform = 'translateY(-2px)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#5458ae';
+                            e.currentTarget.style.transform = 'translateY(0)';
+                          }}
+                        >
+                          View Live Demo
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15,3 21,3 21,9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                          </svg>
+                        </a>
+                      </div>
+                    </>
+                  ) : index === 1 ? (
+                    <>
+                      <img
+                        src={leadGenerationScreenshot}
+                        alt="Lead Generation Screenshot"
+                      />
+                      <div style={{ padding: '20px' }}>
+                        <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
+                          Lead Generation
+                        </h4>
+                        <p style={{ margin: '0 0 15px 0', color: '#666', fontSize: '14px' }}>
+                          Lead magnet funnel with email sequence
+                        </p>
+                        <a 
+                          href="https://lead-generation-jd.netlify.app/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            background: '#5458ae',
+                            color: '#ffffff',
+                            padding: '10px 16px',
+                            borderRadius: '8px',
+                            textDecoration: 'none',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            transition: 'all 0.3s ease',
+                            boxShadow: '0 4px 12px rgba(84, 88, 174, 0.3)'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#4a4f9e';
+                            e.currentTarget.style.transform = 'translateY(-2px)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#5458ae';
+                            e.currentTarget.style.transform = 'translateY(0)';
+                          }}
+                        >
+                          View Live Demo
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15,3 21,3 21,9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                          </svg>
+                        </a>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <img
+                        src={productLaunchScreenshot}
+                        alt="Product Launch Screenshot"
+                      />
+                      <div style={{ padding: '20px' }}>
+                        <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
+                          Product Launch
+                        </h4>
+                        <p style={{ margin: '0 0 15px 0', color: '#666', fontSize: '14px' }}>
+                          Product launch funnel with scarcity elements
+                        </p>
+                        <a 
+                          href="https://product-launch-jd.netlify.app/" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            background: '#5458ae',
+                            color: '#ffffff',
+                            padding: '10px 16px',
+                            borderRadius: '8px',
+                            textDecoration: 'none',
+                            fontSize: '14px',
+                            fontWeight: '600',
+                            transition: 'all 0.3s ease',
+                            boxShadow: '0 4px 12px rgba(84, 88, 174, 0.3)'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#4a4f9e';
+                            e.currentTarget.style.transform = 'translateY(-2px)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = '#5458ae';
+                            e.currentTarget.style.transform = 'translateY(0)';
+                          }}
+                        >
+                          View Live Demo
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15,3 21,3 21,9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                          </svg>
+                        </a>
+                      </div>
+                    </>
+                  )}
                 </div>
               ))}
             </div>
@@ -858,14 +1017,189 @@ function App() {
         {/* Contact */}
         <section id="contact" ref={(el) => { refs.current['contact'] = el }} className="contact">
           <h2>Contact</h2>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input className="input" placeholder="Name" />
-            <input className="input" placeholder="Email" type="email" />
-            <textarea className="textarea" placeholder="Message" />
-            <div style={{ textAlign: 'center', marginTop: 8 }}>
-              <button className="btn" type="submit">Enviar</button>
+          
+          {/* Contact Layout - Side by Side */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: '1fr 1fr', 
+            gap: '40px', 
+            maxWidth: '1200px', 
+            margin: '0 auto',
+            alignItems: 'start'
+          }}>
+            
+            {/* Left Side - Get In Touch */}
+            <div style={{ 
+              padding: '30px', 
+              background: 'rgba(255, 255, 255, 0.1)', 
+              borderRadius: '16px', 
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              height: 'fit-content'
+            }}>
+              <h3 style={{ 
+                fontSize: '24px', 
+                marginBottom: '25px', 
+                color: '#ffffff', 
+                textAlign: 'center',
+                fontWeight: '600'
+              }}>
+                Get In Touch
+              </h3>
+              <div style={{ 
+                display: 'flex', 
+                flexDirection: 'column',
+                gap: '20px'
+              }}>
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '15px',
+                  padding: '15px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    background: '#5458ae',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ color: '#B2D8CE', fontSize: '14px', fontWeight: '500', marginBottom: '4px' }}>Email</div>
+                    <a 
+                      href="mailto:jamesdaumar101@gmail.com" 
+                      style={{ 
+                        color: '#ffffff', 
+                        textDecoration: 'none', 
+                        fontSize: '16px',
+                        fontWeight: '600'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = '#B2D8CE'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = '#ffffff'}
+                    >
+                      jamesdaumar101@gmail.com
+                    </a>
+                  </div>
+                </div>
+                
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '15px',
+                  padding: '15px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    background: '#5458ae',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ color: '#B2D8CE', fontSize: '14px', fontWeight: '500', marginBottom: '4px' }}>Phone</div>
+                    <a 
+                      href="tel:09916390404" 
+                      style={{ 
+                        color: '#ffffff', 
+                        textDecoration: 'none', 
+                        fontSize: '16px',
+                        fontWeight: '600'
+                      }}
+                      onMouseEnter={(e) => e.currentTarget.style.color = '#B2D8CE'}
+                      onMouseLeave={(e) => e.currentTarget.style.color = '#ffffff'}
+                    >
+                      +63 991 639 0404
+                    </a>
+                  </div>
+                </div>
+                
+                <div style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '15px',
+                  padding: '15px',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    background: '#5458ae',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0
+                  }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                  </div>
+                  <div>
+                    <div style={{ color: '#B2D8CE', fontSize: '14px', fontWeight: '500', marginBottom: '4px' }}>Location</div>
+                    <div style={{ 
+                      color: '#ffffff', 
+                      fontSize: '16px',
+                      fontWeight: '600'
+                    }}>
+                      Valencia City, Bukidnon
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-          </form>
+            
+            {/* Right Side - Contact Form */}
+            <div style={{ 
+              padding: '30px', 
+              background: 'rgba(255, 255, 255, 0.1)', 
+              borderRadius: '16px', 
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              height: 'fit-content'
+            }}>
+              <h3 style={{ 
+                fontSize: '24px', 
+                marginBottom: '25px', 
+                color: '#ffffff', 
+                textAlign: 'center',
+                fontWeight: '600'
+              }}>
+                Send Message
+              </h3>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <input className="input" placeholder="Name" />
+                <input className="input" placeholder="Email" type="email" />
+                <textarea className="textarea" placeholder="Message" />
+                <div style={{ textAlign: 'center', marginTop: 8 }}>
+                  <button className="btn" type="submit">Enviar</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </section>
       </main>
     </>
