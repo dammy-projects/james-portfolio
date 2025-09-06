@@ -10,6 +10,27 @@ import shot6 from './assets/Screenshot 2025-08-25 012328.png'
 import salesFunnelScreenshot from './assets/Screenshot 2025-09-04 132251.png'
 import leadGenerationScreenshot from './assets/Screenshot 2025-09-04 132311.png'
 import productLaunchScreenshot from './assets/Screenshot 2025-09-04 132322.png'
+// Graphics Design Images
+import graphics1 from './assets/Grey Orange Modern Circle Class Logo (1).jpg'
+import graphics2 from './assets/SDO.png'
+import graphics3 from './assets/Grey Orange Modern Circle Class Logo (2).jpg'
+import graphics4 from './assets/Grey Orange Modern Circle Class Logo (3).jpg'
+import graphics5 from './assets/Grey Orange Modern Circle Class Logo.jpg'
+import graphics6 from './assets/IBAWA LOGO.png'
+// Brand Design Images
+import brand1 from './assets/Black and White Oktobeer Festival Event Instagram Post.jpg'
+import brand2 from './assets/Black and Yellow Modern New Year Party Instagram Post (1).jpg'
+import brand3 from './assets/Black and Yellow Modern New Year Party Instagram Post (2).jpg'
+import brand4 from './assets/Black and Yellow Modern New Year Party Instagram Post (3).jpg'
+import brand5 from './assets/Black and Yellow Modern New Year Party Instagram Post.jpg'
+// Social Media Design Images
+import social1 from './assets/1.jpg'
+import social2 from './assets/2.jpg'
+import social3 from './assets/482051636_973093448280616_541941938264484963_n.jpg'
+import social4 from './assets/482076283_640948755189091_5567576802919723629_n.jpg'
+import social5 from './assets/Basketball Tournament Red Sport Instagram Story .png'
+import social6 from './assets/IBACMI GRADUATION PROGRAM 2023.png'
+import social7 from './assets/Long Weekend! IBACMI.jpg'
 import './App.css'
 
 function App() {
@@ -22,18 +43,33 @@ function App() {
   const galleryImages = [shot1, shot2]
   const ibacmiGalleryImages = [shot3, shot4]
   const edificeGalleryImages = [shot5, shot6]
+  const graphicsGalleryImages = [graphics1, graphics2, graphics3, graphics4, graphics5, graphics6]
+  const brandGalleryImages = [brand1, brand2, brand3, brand4, brand5]
+  const socialGalleryImages = [social1, social2, social3, social4, social5, social6, social7]
   const [isGalleryOpen, setIsGalleryOpen] = useState(false)
   const [galleryIndex, setGalleryIndex] = useState(0)
   const [isIbacmiGalleryOpen, setIsIbacmiGalleryOpen] = useState(false)
   const [ibacmiGalleryIndex, setIbacmiGalleryIndex] = useState(0)
   const [isEdificeGalleryOpen, setIsEdificeGalleryOpen] = useState(false)
   const [edificeGalleryIndex, setEdificeGalleryIndex] = useState(0)
+  const [isGraphicsGalleryOpen, setIsGraphicsGalleryOpen] = useState(false)
+  const [graphicsGalleryIndex, setGraphicsGalleryIndex] = useState(0)
+  const [isBrandGalleryOpen, setIsBrandGalleryOpen] = useState(false)
+  const [brandGalleryIndex, setBrandGalleryIndex] = useState(0)
+  const [isSocialGalleryOpen, setIsSocialGalleryOpen] = useState(false)
+  const [socialGalleryIndex, setSocialGalleryIndex] = useState(0)
   const openGallery = (startIndex: number = 0) => { setGalleryIndex(startIndex); setIsGalleryOpen(true) }
   const openIbacmiGallery = (startIndex: number = 0) => { setIbacmiGalleryIndex(startIndex); setIsIbacmiGalleryOpen(true) }
   const openEdificeGallery = (startIndex: number = 0) => { setEdificeGalleryIndex(startIndex); setIsEdificeGalleryOpen(true) }
+  const openGraphicsGallery = (startIndex: number = 0) => { setGraphicsGalleryIndex(startIndex); setIsGraphicsGalleryOpen(true) }
+  const openBrandGallery = (startIndex: number = 0) => { setBrandGalleryIndex(startIndex); setIsBrandGalleryOpen(true) }
+  const openSocialGallery = (startIndex: number = 0) => { setSocialGalleryIndex(startIndex); setIsSocialGalleryOpen(true) }
   const nextImage = () => setGalleryIndex((i) => (i + 1) % galleryImages.length)
   const nextIbacmiImage = () => setIbacmiGalleryIndex((i) => (i + 1) % ibacmiGalleryImages.length)
   const nextEdificeImage = () => setEdificeGalleryIndex((i) => (i + 1) % edificeGalleryImages.length)
+  const nextGraphicsImage = () => setGraphicsGalleryIndex((i) => (i + 1) % graphicsGalleryImages.length)
+  const nextBrandImage = () => setBrandGalleryIndex((i) => (i + 1) % brandGalleryImages.length)
+  const nextSocialImage = () => setSocialGalleryIndex((i) => (i + 1) % socialGalleryImages.length)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -170,6 +206,26 @@ function App() {
           grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
           gap: 30px;
           margin-top: 30px;
+        }
+
+        /* Work Section Mobile Responsive */
+        @media (max-width: 768px) {
+          .work-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .work-grid {
+            gap: 16px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .work-grid {
+            gap: 12px !important;
+          }
         }
 
         .work-card {
@@ -384,31 +440,193 @@ function App() {
         /* Utilities */
         .lead { font-size: 18px; color: var(--muted); }
 
-        /* Responsive */
+        /* Enhanced Mobile Responsive Design */
+        @media (max-width: 1200px) {
+          main { padding: 20px 16px 60px; }
+          section { padding: 60px 0; }
+        }
+
         @media (max-width: 980px) {
           .nav-inner { padding: 12px 14px; }
           .links { gap: 16px; }
           main { padding: 18px 16px 56px; }
           section { padding: 56px 0; }
           h2 { font-size: 32px; }
-          .hero { grid-template-columns: 1fr; text-align: center; }
-          .about { grid-template-columns: 1fr; }
-          .skills { grid-template-columns: 1fr; }
-          .work-grid { grid-template-columns: 1fr 1fr; }
+          .hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+          .about { grid-template-columns: 1fr; gap: 30px; }
+          .skills { grid-template-columns: 1fr; gap: 30px; }
+          .work-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
           .work-card img { height: 160px; }
+          .process-flow { gap: 30px; }
+          .process-step { max-width: 200px; }
+          .process-badge { width: 48px; height: 48px; font-size: 14px; }
+          .process-title { font-size: 16px; }
+          .process-desc { font-size: 13px; }
         }
-        @media (max-width: 640px) {
-          .title { font-size: clamp(24px, 6vw, 36px); }
-          .cta { padding: 10px 14px; }
-          .work-grid { grid-template-columns: 1fr; }
-          .work-card img { height: 150px; }
-          main { padding: 16px 14px 48px; }
+
+        @media (max-width: 768px) {
+          .nav { border-radius: 12px; margin: 8px; }
+          .nav-inner { padding: 10px 12px; }
+          .brand { font-size: 20px; }
+          main { padding: 16px 12px 48px; }
           section { padding: 48px 0; scroll-margin-top: 72px; }
+          h2 { font-size: 28px; margin-bottom: 20px; }
+          .title { font-size: clamp(24px, 6vw, 36px); }
+          .cta { padding: 10px 14px; font-size: 14px; }
+          .work-grid { grid-template-columns: 1fr; gap: 16px; }
+          .work-card img { height: 150px; }
+          .work-card h4 { font-size: 16px; }
+          .work-card p { font-size: 13px; }
+          .blob { width: clamp(150px, 35vw, 250px); height: clamp(150px, 35vw, 250px); }
+          .socials { gap: 12px; margin-top: 15px; }
+          .social-link svg { width: 24px; height: 24px; }
+          .process-flow { gap: 20px; }
+          .process-step { max-width: 150px; }
+          .process-badge { width: 40px; height: 40px; font-size: 12px; }
+          .process-title { font-size: 14px; margin: 8px 0 2px; }
+          .process-desc { font-size: 12px; }
+          .process-divider { display: none; }
+          .modal-content { max-width: 95%; padding: 10px; }
+          .modal-content .btn { padding: 10px 16px; font-size: 14px; }
         }
+
+        @media (max-width: 640px) {
+          .nav { margin: 4px; border-radius: 8px; }
+          .nav-inner { padding: 8px 10px; }
+          .brand { font-size: 18px; }
+          main { padding: 12px 8px 40px; }
+          section { padding: 40px 0; scroll-margin-top: 60px; }
+          h2 { font-size: 24px; margin-bottom: 16px; }
+          .title { font-size: clamp(20px, 8vw, 28px); }
+          .lead { font-size: 16px; }
+          .cta { padding: 8px 12px; font-size: 13px; }
+          .work-grid { gap: 12px; }
+          .work-card img { height: 120px; }
+          .work-card h4 { font-size: 15px; }
+          .work-card p { font-size: 12px; }
+          .blob { width: clamp(120px, 40vw, 200px); height: clamp(120px, 40vw, 200px); }
+          .socials { gap: 10px; margin-top: 12px; }
+          .social-link svg { width: 20px; height: 20px; }
+          .process-flow { gap: 15px; }
+          .process-step { max-width: 120px; }
+          .process-badge { width: 36px; height: 36px; font-size: 11px; }
+          .process-title { font-size: 13px; margin: 6px 0 2px; }
+          .process-desc { font-size: 11px; }
+          .modal-content { max-width: 98%; padding: 8px; }
+          .modal-content .btn { padding: 8px 12px; font-size: 12px; margin: 0 4px; }
+        }
+
+        @media (max-width: 480px) {
+          .nav { margin: 2px; border-radius: 6px; }
+          .nav-inner { padding: 6px 8px; }
+          .brand { font-size: 16px; }
+          main { padding: 8px 6px 32px; }
+          section { padding: 32px 0; scroll-margin-top: 50px; }
+          h2 { font-size: 20px; margin-bottom: 12px; }
+          .title { font-size: clamp(18px, 10vw, 24px); }
+          .lead { font-size: 14px; }
+          .cta { padding: 6px 10px; font-size: 12px; }
+          .work-grid { gap: 10px; }
+          .work-card img { height: 100px; }
+          .work-card h4 { font-size: 14px; }
+          .work-card p { font-size: 11px; }
+          .blob { width: clamp(100px, 45vw, 160px); height: clamp(100px, 45vw, 160px); }
+          .socials { gap: 8px; margin-top: 10px; }
+          .social-link svg { width: 18px; height: 18px; }
+          .process-flow { gap: 12px; }
+          .process-step { max-width: 100px; }
+          .process-badge { width: 32px; height: 32px; font-size: 10px; }
+          .process-title { font-size: 12px; margin: 4px 0 1px; }
+          .process-desc { font-size: 10px; }
+          .modal-content { max-width: 99%; padding: 6px; }
+          .modal-content .btn { padding: 6px 10px; font-size: 11px; margin: 0 2px; }
+        }
+
         @media (max-width: 420px) {
           .links { gap: 12px; }
           .skill { grid-template-columns: 1fr auto; row-gap: 10px; }
           .skill > div:first-child { order: -1; }
+        }
+
+        /* Contact Section Mobile Responsive */
+        @media (max-width: 768px) {
+          .contact-layout {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+          .contact form { max-width: 100%; }
+          .contact .input, .contact .textarea { 
+            padding: 10px 12px; 
+            font-size: 14px; 
+          }
+          .contact .textarea { min-height: 150px; }
+          .contact .btn { 
+            padding: 10px 16px; 
+            font-size: 14px; 
+            width: 100%; 
+          }
+        }
+
+        @media (max-width: 640px) {
+          .contact .input, .contact .textarea { 
+            padding: 8px 10px; 
+            font-size: 13px; 
+          }
+          .contact .textarea { min-height: 120px; }
+          .contact .btn { 
+            padding: 8px 12px; 
+            font-size: 13px; 
+          }
+        }
+
+        /* Skills Section Mobile Responsive */
+        @media (max-width: 768px) {
+          .skills-animate {
+            gap: 12px;
+          }
+          .skills-animate span {
+            font-size: 16px;
+            padding: 10px 16px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .skills-animate {
+            gap: 10px;
+          }
+          .skills-animate span {
+            font-size: 14px;
+            padding: 8px 12px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .skills-animate {
+            gap: 8px;
+          }
+          .skills-animate span {
+            font-size: 12px;
+            padding: 6px 10px;
+          }
+        }
+
+        /* About Section Mobile Responsive */
+        @media (max-width: 768px) {
+          .about .card { padding: 14px; }
+          .about h3 { font-size: 20px; }
+          .about p { font-size: 14px; }
+        }
+
+        @media (max-width: 640px) {
+          .about .card { padding: 12px; }
+          .about h3 { font-size: 18px; }
+          .about p { font-size: 13px; }
+        }
+
+        @media (max-width: 480px) {
+          .about .card { padding: 10px; }
+          .about h3 { font-size: 16px; }
+          .about p { font-size: 12px; }
         }
 
         /* Mobile menu responsive styles */
@@ -516,6 +734,51 @@ function App() {
                   </svg>
                 </a>
               </div>
+              
+              {/* Download CV Button */}
+              <div style={{ 
+                display: 'flex', 
+                justifyContent: 'center', 
+                marginTop: '30px' 
+              }}>
+                <a 
+                  href="/James_Daumar_CV_Modern.pdf" 
+                  download="James_Daumar_CV_Modern.pdf"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    background: 'linear-gradient(135deg, #5458ae 0%, #4b2d7f 100%)',
+                    color: '#ffffff',
+                    padding: '14px 28px',
+                    borderRadius: '12px',
+                    textDecoration: 'none',
+                    fontSize: '16px',
+                    fontWeight: '600',
+                    border: '2px solid rgba(255, 255, 255, 0.2)',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 8px 25px rgba(84, 88, 174, 0.3)',
+                    backdropFilter: 'blur(10px)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 12px 35px rgba(84, 88, 174, 0.4)';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #4a4f9e 0%, #3d2566 100%)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(84, 88, 174, 0.3)';
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #5458ae 0%, #4b2d7f 100%)';
+                  }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7,10 12,15 17,10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Download CV
+                </a>
+              </div>
             </div>
             <div className="blob">
               <img src={heroPhoto} alt="James Daumar" />
@@ -555,7 +818,9 @@ function App() {
                 { name: 'Vite', icon: <svg width="20" height="20" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="a" x1="6" x2="235" y1="33" y2="344" gradientTransform="translate(0 .937) scale(.3122)" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#41d1ff"/><stop offset="1" stopColor="#bd34fe"/></linearGradient><linearGradient id="b" x1="194.651" x2="236.076" y1="8.818" y2="292.989" gradientTransform="translate(0 .937) scale(.3122)" gradientUnits="userSpaceOnUse"><stop offset="0" stopColor="#ffea83"/><stop offset=".083" stopColor="#ffdd35"/><stop offset="1" stopColor="#ffa800"/></linearGradient></defs><path fill="url(#a)" d="M124.766 19.52 67.324 122.238c-1.187 2.121-4.234 2.133-5.437.024L3.305 19.532c-1.313-2.302.652-5.087 3.261-4.622L64.07 25.187a3.09 3.09 0 0 0 1.11 0l56.3-10.261c2.598-.473 4.575 2.289 3.286 4.594Zm0 0"/><path fill="url(#b)" d="M91.46 1.43 48.954 9.758a1.56 1.56 0 0 0-1.258 1.437l-2.617 44.168a1.563 1.563 0 0 0 1.91 1.614l11.836-2.735a1.562 1.562 0 0 1 1.88 1.836l-3.517 17.219a1.562 1.562 0 0 0 1.985 1.805l7.308-2.223c1.133-.344 2.223.652 1.985 1.812l-5.59 27.047c-.348 1.692 1.902 2.614 2.84 1.164l.625-.968 34.64-69.13c.582-1.16-.421-2.48-1.69-2.234l-12.185 2.352a1.558 1.558 0 0 1-1.793-1.965l7.95-27.562A1.56 1.56 0 0 0 91.46 1.43Zm0 0"/></svg> },
                 { name: 'MongoDB', icon: <svg width="20" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2"><path d="M361.079 206.46c-25.576-112.83-78.884-142.866-92.482-164.1a241.402 241.402 0 01-14.868-29.1c-.719 10.023-2.038 16.338-10.558 23.939-17.107 15.252-89.76 74.456-95.873 202.655-5.697 119.528 87.87 193.233 100.233 200.851 9.506 4.678 21.082.1 26.729-4.193 45.105-30.956 106.732-113.481 86.869-230.052" fill="#10aa50" fillRule="nonzero"/><path d="M257.604 377.057c-2.355 29.585-4.042 46.775-10.023 63.681 0 0 3.926 28.166 6.682 58.002h9.756a542.483 542.483 0 0110.642-62.462c-12.63-6.214-16.572-33.26-17.057-59.221z" fill="#b8c4c2" fillRule="nonzero"/><path d="M274.644 436.295c-12.763-5.897-16.455-33.512-17.023-59.238a1212.794 1212.794 0 002.757-127.547c-.669-22.319.317-206.715-5.497-233.711a224.383 224.383 0 0013.716 26.545c13.598 21.25 66.922 51.286 92.482 164.116 19.913 116.37-41.38 198.679-86.435 229.835z" fill="#12924f" fillRule="nonzero"/></svg> },
                 { name: 'n8n', icon: <svg width="20" height="20" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2"><path d="M512 179.2c0 28.267-23.51 51.2-52.522 51.2-24.448 0-45.014-16.32-50.86-38.4h-73.3c-12.843 0-23.787 9.045-25.9 21.397l-2.154 12.63A50.917 50.917 0 01290.197 256c8.79 7.552 15.02 18.005 17.067 29.973l2.133 12.63c2.262 12.458 13.291 21.546 25.942 21.397h20.8c5.824-22.08 26.39-38.4 50.859-38.4 29.013 0 52.5 22.933 52.5 51.2 0 28.267-23.53 51.2-52.5 51.2-24.47 0-45.014-16.32-50.86-38.4h-20.8c-25.685 0-47.573-18.09-51.797-42.773l-2.154-12.63c-2.262-12.437-13.27-21.525-25.899-21.397h-21.461c-6.57 20.992-26.582 36.267-50.262 36.267s-43.69-15.275-50.24-36.267h-30.762c-6.571 20.992-26.582 36.267-50.24 36.267-29.014 0-52.523-22.934-52.523-51.2 0-28.267 23.51-51.2 52.523-51.2 25.237 0 46.336 17.386 51.37 40.533h28.523c5.035-23.147 26.133-40.533 51.37-40.533 25.26 0 46.337 17.386 51.371 40.533h20.31c12.821 0 23.786-9.045 25.877-21.397l2.176-12.63c4.224-24.682 26.133-42.773 51.798-42.773h73.3c5.846-22.08 26.412-38.4 50.86-38.4C488.49 128 512 150.933 512 179.2zm-26.24 0c0 14.144-11.776 25.6-26.282 25.6-14.507 0-26.24-11.456-26.24-25.6 0-14.144 11.733-25.6 26.24-25.6 14.506 0 26.26 11.456 26.26 25.6h.022zM52.501 279.467c14.507 0 26.24-11.456 26.24-25.6 0-14.144-11.733-25.6-26.24-25.6-14.506 0-26.261 11.456-26.261 25.6 0 14.144 11.733 25.6 26.24 25.6h.021zm131.264 0c14.507 0 26.262-11.456 26.262-25.6 0-14.144-11.734-25.6-26.24-25.6-14.507 0-26.262 11.456-26.262 25.6 0 14.144 11.734 25.6 26.24 25.6zm223.19 78.933c14.507 0 26.24-11.456 26.24-25.6 0-14.144-11.733-25.6-26.24-25.6-14.507 0-26.24 11.456-26.24 25.6 0 14.144 11.733 25.6 26.24 25.6z" fill="#ea4b71"/></svg> },
-                { name: 'GitHub', icon: <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" viewBox="0 0 640 640"><path d="M319.988 7.973C143.293 7.973 0 151.242 0 327.96c0 141.392 91.678 261.298 218.826 303.63 16.004 2.964 21.886-6.957 21.886-15.414 0-7.63-.319-32.835-.449-59.552-89.032 19.359-107.8-37.772-107.8-37.772-14.552-36.993-35.529-46.831-35.529-46.831-29.032-19.879 2.209-19.442 2.209-19.442 32.126 2.245 49.04 32.954 49.04 32.954 28.56 48.922 74.883 34.76 93.131 26.598 2.882-20.681 11.15-34.807 20.315-42.803-71.08-8.067-145.797-35.516-145.797-158.14 0-34.926 12.52-63.485 32.965-85.88-3.33-8.078-14.291-40.606 3.083-84.674 0 0 26.87-8.61 88.029 32.8 25.512-7.075 52.878-10.642 80.056-10.76 27.2.118 54.614 3.673 80.162 10.76 61.076-41.386 87.922-32.8 87.922-32.8 17.398 44.08 6.485 76.631 3.154 84.675 20.516 22.394 32.93 50.953 32.93 85.879 0 122.907-74.883 149.93-146.117 157.856 11.481 9.921 21.733 29.398 21.733 59.233 0 42.792-.366 77.28-.366 87.804 0 8.516 5.764 18.473 21.992 15.354 127.076-42.354 218.637-162.274 218.637-303.582 0-176.695-143.269-319.988-320-319.988l-.023.107z"/></svg> }
+                { name: 'GitHub', icon: <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" textRendering="geometricPrecision" imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" viewBox="0 0 640 640"><path d="M319.988 7.973C143.293 7.973 0 151.242 0 327.96c0 141.392 91.678 261.298 218.826 303.63 16.004 2.964 21.886-6.957 21.886-15.414 0-7.63-.319-32.835-.449-59.552-89.032 19.359-107.8-37.772-107.8-37.772-14.552-36.993-35.529-46.831-35.529-46.831-29.032-19.879 2.209-19.442 2.209-19.442 32.126 2.245 49.04 32.954 49.04 32.954 28.56 48.922 74.883 34.76 93.131 26.598 2.882-20.681 11.15-34.807 20.315-42.803-71.08-8.067-145.797-35.516-145.797-158.14 0-34.926 12.52-63.485 32.965-85.88-3.33-8.078-14.291-40.606 3.083-84.674 0 0 26.87-8.61 88.029 32.8 25.512-7.075 52.878-10.642 80.056-10.76 27.2.118 54.614 3.673 80.162 10.76 61.076-41.386 87.922-32.8 87.922-32.8 17.398 44.08 6.485 76.631 3.154 84.675 20.516 22.394 32.93 50.953 32.93 85.879 0 122.907-74.883 149.93-146.117 157.856 11.481 9.921 21.733 29.398 21.733 59.233 0 42.792-.366 77.28-.366 87.804 0 8.516 5.764 18.473 21.992 15.354 127.076-42.354 218.637-162.274 218.637-303.582 0-176.695-143.269-319.988-320-319.988l-.023.107z"/></svg> },
+                { name: 'Canva', icon: <img width="20" height="20" src="https://img.icons8.com/fluency/48/canva.png" alt="canva"/> },
+                { name: 'Adobe', icon: <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/adobe-logo.png" alt="adobe-logo"/> },
                ].map((skill, index) => (
                  <span key={index} style={{ 
                    fontSize: '18px', 
@@ -948,29 +1213,223 @@ function App() {
               and social media graphics, I create visually stunning designs that communicate your message effectively 
               and leave a lasting impression on your audience.
             </p>
-            <div className="work-grid">
-              {[
-                'photo-1558655146-d09347e92766',
-                'photo-1558655146-d09347e92766',
-                'photo-1558655146-d09347e92766'
-              ].map((id, index) => (
-                <div key={`graphics-${id}-${index}`} className="work-card">
-                  <img
-                    src={`https://images.unsplash.com/${id}?q=80&w=1200&auto=format&fit=crop`}
-                    alt={`Graphics Design ${index + 1}`}
-                  />
-                  <div style={{ padding: '20px' }}>
-                    <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>
-                      {index === 0 ? 'Brand Identity' : index === 1 ? 'Marketing Materials' : 'Social Media'}
-                    </h4>
-                    <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
-                      {index === 0 ? 'Complete brand identity and logo design' : 
-                       index === 1 ? 'Brochures, flyers, and business cards' : 
-                       'Social media graphics and templates'}
-                    </p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className="work-card" style={{ maxWidth: '600px', width: '100%' }}>
+                <div style={{ position: 'relative', padding: '20px' }}>
+                  <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(3, 1fr)', 
+                    gap: '10px',
+                    borderRadius: '8px',
+                    overflow: 'hidden'
+                  }}>
+                    {graphicsGalleryImages.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={`Graphics Design ${index + 1}`}
+                        style={{ 
+                          width: '100%', 
+                          height: '120px',
+                          objectFit: 'cover',
+                          borderRadius: '4px'
+                        }}
+                      />
+                    ))}
                   </div>
+                  <button 
+                    onClick={() => openGraphicsGallery(0)}
+                    style={{
+                      position: 'absolute',
+                      top: '30px',
+                      right: '30px',
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#333"/>
+                    </svg>
+                  </button>
                 </div>
-              ))}
+                <div style={{ padding: '20px' }}>
+                  <div style={{ color: '#888', fontSize: '12px', marginBottom: 6 }}>Design Portfolio</div>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>Graphics Design Collection</h4>
+                  <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                    A collection of professional logo designs, brand identities, and marketing materials including Studio James, 
+                    Sports Development Office, Rust Vibes, New Brand 1980, Bukidnon School, and IBAWA Workers Association.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Brand Designs Section */}
+          <div style={{ marginBottom: '60px' }}>
+            <h3 style={{ fontSize: '28px', marginBottom: '20px', color: '#ffffff' }}>Brand Designs</h3>
+            <p style={{ fontSize: '16px', color: '#B2D8CE', marginBottom: '30px', lineHeight: '1.6' }}>
+              Strategic brand design solutions that create memorable experiences and drive engagement. From social media campaigns 
+              to event promotions, I craft compelling visual narratives that capture attention, build brand recognition, 
+              and connect with your target audience across all digital platforms.
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className="work-card" style={{ maxWidth: '600px', width: '100%' }}>
+                <div style={{ position: 'relative', padding: '20px' }}>
+                  <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(3, 1fr)', 
+                    gap: '10px',
+                    borderRadius: '8px',
+                    overflow: 'hidden'
+                  }}>
+                    {brandGalleryImages.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={`Brand Design ${index + 1}`}
+                        style={{ 
+                          width: '100%', 
+                          height: '120px',
+                          objectFit: 'cover',
+                          borderRadius: '4px'
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <button 
+                    onClick={() => openBrandGallery(0)}
+                    style={{
+                      position: 'absolute',
+                      top: '30px',
+                      right: '30px',
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#333"/>
+                    </svg>
+                  </button>
+                </div>
+                <div style={{ padding: '20px' }}>
+                  <div style={{ color: '#888', fontSize: '12px', marginBottom: 6 }}>Brand Portfolio</div>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>Brand Design Collection</h4>
+                  <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                    A collection of strategic brand designs including social media campaigns, event promotions, and marketing materials 
+                    featuring Oktoberfest Festival, New Year Party series, and other engaging brand experiences.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Media Designs Section */}
+          <div style={{ marginBottom: '60px' }}>
+            <h3 style={{ fontSize: '28px', marginBottom: '20px', color: '#ffffff' }}>Social Media Designs</h3>
+            <p style={{ fontSize: '16px', color: '#B2D8CE', marginBottom: '30px', lineHeight: '1.6' }}>
+              Engaging social media content that drives interaction and builds community. From educational announcements 
+              to celebratory posts, I create compelling visual content that captures attention, communicates effectively, 
+              and strengthens brand presence across all social media platforms.
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className="work-card" style={{ maxWidth: '600px', width: '100%' }}>
+                <div style={{ position: 'relative', padding: '20px' }}>
+                  <div style={{ 
+                    display: 'grid', 
+                    gridTemplateColumns: 'repeat(3, 1fr)', 
+                    gap: '10px',
+                    borderRadius: '8px',
+                    overflow: 'hidden'
+                  }}>
+                    {socialGalleryImages.map((image, index) => (
+                      <img
+                        key={index}
+                        src={image}
+                        alt={`Social Media Design ${index + 1}`}
+                        style={{ 
+                          width: '100%', 
+                          height: '120px',
+                          objectFit: 'cover',
+                          borderRadius: '4px'
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <button 
+                    onClick={() => openSocialGallery(0)}
+                    style={{
+                      position: 'absolute',
+                      top: '30px',
+                      right: '30px',
+                      background: 'rgba(255, 255, 255, 0.9)',
+                      border: 'none',
+                      borderRadius: '50%',
+                      width: '40px',
+                      height: '40px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+                      transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 1)';
+                      e.currentTarget.style.transform = 'scale(1.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.9)';
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#333"/>
+                    </svg>
+                  </button>
+                </div>
+                <div style={{ padding: '20px' }}>
+                  <div style={{ color: '#888', fontSize: '12px', marginBottom: 6 }}>Social Media Portfolio</div>
+                  <h4 style={{ margin: '0 0 10px 0', color: '#333' }}>Social Media Design Collection</h4>
+                  <p style={{ margin: 0, color: '#666', fontSize: '14px' }}>
+                    A collection of engaging social media content including enrollment announcements, academic schedules, 
+                    event promotions, and celebratory posts for IBA College of Mindanao, Inc.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -1014,6 +1473,45 @@ function App() {
            </div>
          )}
 
+         {/* Graphics Design Modal Gallery */}
+         {isGraphicsGalleryOpen && (
+           <div className="modal" onClick={(e) => { if (e.target === e.currentTarget) setIsGraphicsGalleryOpen(false) }}>
+             <div className="modal-content">
+               <img src={graphicsGalleryImages[graphicsGalleryIndex]} alt={`Graphics Design ${graphicsGalleryIndex + 1}`} />
+               <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 12 }}>
+                 <button className="btn" onClick={() => setIsGraphicsGalleryOpen(false)}>Close</button>
+                 <button className="btn" onClick={nextGraphicsImage}>Next</button>
+               </div>
+             </div>
+           </div>
+         )}
+
+         {/* Brand Design Modal Gallery */}
+         {isBrandGalleryOpen && (
+           <div className="modal" onClick={(e) => { if (e.target === e.currentTarget) setIsBrandGalleryOpen(false) }}>
+             <div className="modal-content">
+               <img src={brandGalleryImages[brandGalleryIndex]} alt={`Brand Design ${brandGalleryIndex + 1}`} />
+               <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 12 }}>
+                 <button className="btn" onClick={() => setIsBrandGalleryOpen(false)}>Close</button>
+                 <button className="btn" onClick={nextBrandImage}>Next</button>
+               </div>
+             </div>
+           </div>
+         )}
+
+         {/* Social Media Design Modal Gallery */}
+         {isSocialGalleryOpen && (
+           <div className="modal" onClick={(e) => { if (e.target === e.currentTarget) setIsSocialGalleryOpen(false) }}>
+             <div className="modal-content">
+               <img src={socialGalleryImages[socialGalleryIndex]} alt={`Social Media Design ${socialGalleryIndex + 1}`} />
+               <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 12 }}>
+                 <button className="btn" onClick={() => setIsSocialGalleryOpen(false)}>Close</button>
+                 <button className="btn" onClick={nextSocialImage}>Next</button>
+               </div>
+             </div>
+           </div>
+         )}
+
         {/* Contact */}
         <section id="contact" ref={(el) => { refs.current['contact'] = el }} className="contact">
           <h2>Contact</h2>
@@ -1026,7 +1524,7 @@ function App() {
             maxWidth: '1200px', 
             margin: '0 auto',
             alignItems: 'start'
-          }}>
+          }} className="contact-layout">
             
             {/* Left Side - Get In Touch */}
             <div style={{ 
@@ -1195,7 +1693,7 @@ function App() {
                 <input className="input" placeholder="Email" type="email" />
                 <textarea className="textarea" placeholder="Message" />
                 <div style={{ textAlign: 'center', marginTop: 8 }}>
-                  <button className="btn" type="submit">Enviar</button>
+                  <button className="btn" type="submit">Send</button>
                 </div>
               </form>
             </div>
